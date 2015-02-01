@@ -83,9 +83,56 @@ Class WinStructs {
 		USHORT NumberFeatureValueCaps;
 		USHORT NumberFeatureDataIndices;
 	)"
-
+	
 	; UNPROVEN ==========================================================================================================================================================
-	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
+
+	; https://msdn.microsoft.com/en-gb/library/windows/hardware/ff539693(v=vs.85).aspx
+	static HIDP_BUTTON_CAPS_Range := "
+	(
+		USHORT  UsageMin;
+		USHORT  UsageMax;
+		USHORT StringMin;
+		USHORT StringMax;
+		USHORT DesignatorMin;
+		USHORT DesignatorMax;
+		USHORT DataIndexMin;
+		USHORT DataIndexMax;
+	)"
+	
+	static HIDP_BUTTON_CAPS_NotRange := "
+	(
+		USHORT  Usage;
+		USHORT  Reserved1;
+		USHORT StringIndex;
+		USHORT Reserved2;
+		USHORT DesignatorIndex;
+		USHORT Reserved3;
+		USHORT DataIndex;
+		USHORT Reserved4;
+	)"
+	
+	static HIDP_BUTTON_CAPS := "
+	(
+		USHORT  UsagePage;
+		UCHAR   ReportID;
+		BOOLEAN IsAlias;
+		USHORT  BitField;
+		USHORT  LinkCollection;
+		USHORT  LinkUsage;
+		USHORT  LinkUsagePage;
+		BOOLEAN IsRange;
+		BOOLEAN IsStringRange;
+		BOOLEAN IsDesignatorRange;
+		BOOLEAN IsAbsolute;
+		ULONG   Reserved[10];
+		{
+			WinStructs.HIDP_BUTTON_CAPS_Range Range;
+			WinStructs.HIDP_BUTTON_CAPS_NotRange NotRange;
+		};
+	)"
+	
+
+; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
 	static RAWMOUSE := "
 	(
 		USHORT usFlags;
