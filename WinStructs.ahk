@@ -10,6 +10,7 @@ ALWAYS Strip all lower case letters from the start of item names - eg "hDevice" 
 */
 
 Class WinStructs {
+	; TESTED, WORKING ==========================================================================================================================================================
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645568%28v=vs.85%29.aspx
 	static RAWINPUTDEVICELIST := "
 	(
@@ -81,6 +82,63 @@ Class WinStructs {
 		USHORT NumberFeatureButtonCaps;
 		USHORT NumberFeatureValueCaps;
 		USHORT NumberFeatureDataIndices;
+	)"
+
+	; UNPROVEN ==========================================================================================================================================================
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
+	static RAWMOUSE := "
+	(
+		USHORT usFlags;
+		{
+			ULONG  ulButtons;
+			struct {
+				USHORT usButtonFlags;
+				USHORT usButtonData;
+			};
+		};
+		ULONG  ulRawButtons;
+		LONG   lLastX;
+		LONG   lLastY;
+		ULONG  ulExtraInformation;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645575(v=vs.85).aspx
+	static RAWKEYBOARD := "
+	(
+		USHORT MakeCode;
+		USHORT Flags;
+		USHORT Reserved;
+		USHORT VKey;
+		UINT   Message;
+		ULONG  ExtraInformation;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645549(v=vs.85).aspx
+	static RAWHID := "
+	(
+		DWORD dwSizeHid;
+		DWORD dwCount;
+		BYTE  bRawData[1];
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645571(v=vs.85).aspx
+	static RAWINPUTHEADER := "
+	(
+		DWORD  dwType;
+		DWORD  dwSize;
+		HANDLE hDevice;
+		WPARAM wParam;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645562(v=vs.85).aspx
+	static RAWINPUT := "
+	(
+		WinStruct.RAWINPUTHEADER header;
+		{
+			WinStruct.RAWMOUSE    mouse;
+			WinStruct.RAWKEYBOARD keyboard;
+			WinStruct.RAWHID      hid;
+		}
 	)"
 
 }
