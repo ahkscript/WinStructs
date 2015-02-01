@@ -133,11 +133,11 @@ Class WinStructs {
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645562(v=vs.85).aspx
 	static RAWINPUT := "
 	(
-		WinStruct.RAWINPUTHEADER header;
+		WinStructs.RAWINPUTHEADER header;
 		{
-			WinStruct.RAWMOUSE    mouse;
-			WinStruct.RAWKEYBOARD keyboard;
-			WinStruct.RAWHID      hid;
+			WinStructs.RAWMOUSE    mouse;
+			WinStructs.RAWKEYBOARD keyboard;
+			WinStructs.RAWHID      hid;
 		}
 	)"
 
