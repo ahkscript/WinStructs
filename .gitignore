@@ -6,3 +6,6 @@
 *.png
 *.bak
 *.tmp.*
+*.obj
+*.cpp
+*.bat

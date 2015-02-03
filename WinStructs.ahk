@@ -10,8 +10,28 @@ ALWAYS Strip all lower case letters from the start of item names - eg "hDevice" 
 */
 
 Class WinStructs {
+	; Define locations - used to check validity of Structures by looking up the actual size from the specified windows header file.
+	; Set to 1 for default header file of "Windows.h"
+	; Set to -1 to not check (un-named sub-structs etc)
+	static Defines := { RAWINPUTDEVICELIST: 1
+		, RID_DEVICE_INFO_MOUSE: 1
+		, RID_DEVICE_INFO_KEYBOARD: 1
+		, RID_DEVICE_INFO_HID: 1
+		, RID_DEVICE_INFO: 1
+		, HIDP_CAPS: ["Hidusage.h", "Hidpi.h"]
+		, RAWINPUTDEVICE: 1
+		, HIDP_BUTTON_CAPS_Range: -1
+		, HIDP_BUTTON_CAPS_NotRange: -1
+		, HIDP_BUTTON_CAPS: ["Hidusage.h", "Hidpi.h"]
+		, RAWMOUSE: 1
+		, RAWKEYBOARD: 1
+		, RAWHID: 1
+		, RAWINPUTHEADER: 1
+		, RAWINPUT: 1 }
+	
 	; TESTED, WORKING ==========================================================================================================================================================
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645568%28v=vs.85%29.aspx
+	;Defines["RAWINPUTDEVICELIST"] := "aaa"
 	static RAWINPUTDEVICELIST := "
 	(
 		HANDLE Device;	// A handle to the raw input device.
@@ -63,7 +83,7 @@ Class WinStructs {
 		}
 	)"
 	
-	;https://msdn.microsoft.com/en-us/library/windows/hardware/ff539697(v=vs.85).aspx
+	; https://msdn.microsoft.com/en-us/library/windows/hardware/ff539697(v=vs.85).aspx
 	static HIDP_CAPS := "
 	(
 		USHORT Usage;
@@ -86,6 +106,15 @@ Class WinStructs {
 	
 	; UNPROVEN ==========================================================================================================================================================
 
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645565(v=vs.85).aspx
+	static RAWINPUTDEVICE := "
+	(
+		USHORT UsagePage;
+		USHORT Usage;
+		DWORD  Flags;
+		HWND   Target;
+	)"
+	
 	; https://msdn.microsoft.com/en-gb/library/windows/hardware/ff539693(v=vs.85).aspx
 	static HIDP_BUTTON_CAPS_Range := "
 	(
@@ -132,21 +161,21 @@ Class WinStructs {
 	)"
 	
 
-; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
 	static RAWMOUSE := "
 	(
-		USHORT usFlags;
+		USHORT Flags;
 		{
-			ULONG  ulButtons;
-			struct {
-				USHORT usButtonFlags;
-				USHORT usButtonData;
+			ULONG  Buttons;
+			{
+				USHORT ButtonFlags;
+				USHORT ButtonData;
 			};
 		};
-		ULONG  ulRawButtons;
-		LONG   lLastX;
-		LONG   lLastY;
-		ULONG  ulExtraInformation;
+		ULONG  RawButtons;
+		LONG   LastX;
+		LONG   LastY;
+		ULONG  ExtraInformation;
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645575(v=vs.85).aspx
@@ -163,22 +192,33 @@ Class WinStructs {
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645549(v=vs.85).aspx
 	static RAWHID := "
 	(
-		DWORD dwSizeHid;
-		DWORD dwCount;
-		BYTE  bRawData[1];
+		DWORD SizeHid;
+		DWORD Count;
+		BYTE  RawData[1];
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645571(v=vs.85).aspx
 	static RAWINPUTHEADER := "
 	(
-		DWORD  dwType;
-		DWORD  dwSize;
-		HANDLE hDevice;
+		DWORD  Type;
+		DWORD  Size;
+		HANDLE Device;
 		WPARAM wParam;
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645562(v=vs.85).aspx
 	static RAWINPUT := "
+	(
+		WinStructs.RAWINPUTHEADER header;
+		{
+			WinStructs.RAWMOUSE    mouse;
+			WinStructs.RAWKEYBOARD keyboard;
+			WinStructs.RAWHID      hid;
+		}
+	)"
+
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645562(v=vs.85).aspx
+	static RAWINPUT_TEST := "
 	(
 		WinStructs.RAWINPUTHEADER header;
 		{
