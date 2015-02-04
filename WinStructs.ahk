@@ -217,15 +217,4 @@ Class WinStructs {
 		}
 	)"
 
-	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645562(v=vs.85).aspx
-	static RAWINPUT_TEST := "
-	(
-		WinStructs.RAWINPUTHEADER header;
-		{
-			WinStructs.RAWMOUSE    mouse;
-			WinStructs.RAWKEYBOARD keyboard;
-			WinStructs.RAWHID      hid;
-		}
-	)"
-
 }

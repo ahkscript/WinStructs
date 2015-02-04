@@ -31,7 +31,7 @@ For key, value in WinStructs.Defines {
 	s := new _Struct("WinStructs."key)
 	s := sizeof(s)
 	c := sc.Check(key, value)
-	c += 0
+	;c += 0
 	if (s = c){
 		good++
 		okstr := "YES"
