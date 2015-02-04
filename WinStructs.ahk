@@ -36,7 +36,6 @@ Class WinStructs {
 		, RAWINPUTHEADER: 1
 		, RAWINPUT: 1 }
 	
-	; TESTED, WORKING ==========================================================================================================================================================
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645568%28v=vs.85%29.aspx
 	static RAWINPUTDEVICELIST := "
 	(
@@ -50,38 +49,38 @@ Class WinStructs {
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645589(v=vs.85).aspx
 	static RID_DEVICE_INFO_MOUSE := "
 	(
-		DWORD Id;
-		DWORD NumberOfButtons;
-		DWORD SampleRate;
-		BOOL HasHorizontalWheel;
+		DWORD dwId;
+		DWORD dwNumberOfButtons;
+		DWORD dwSampleRate;
+		BOOL fHasHorizontalWheel;
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645587(v=vs.85).aspx
 	static RID_DEVICE_INFO_KEYBOARD := "
 	(
-		DWORD Type;
-		DWORD SubType;
-		DWORD KeyboardMode;
-		DWORD NumberOfFunctionKeys;
-		DWORD NumberOfIndicators;
-		DWORD NumberOfKeysTotal;
+		DWORD dwType;
+		DWORD dwSubType;
+		DWORD dwKeyboardMode;
+		DWORD dwNumberOfFunctionKeys;
+		DWORD dwNumberOfIndicators;
+		DWORD dwNumberOfKeysTotal;
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645584%28v=vs.85%29.aspx
 	static RID_DEVICE_INFO_HID := "
 	(
-		DWORD VendorId;
-		DWORD ProductId;
-		DWORD VersionNumber;
-		USHORT UsagePage;
-		USHORT Usage;
+		DWORD dwVendorId;
+		DWORD dwProductId;
+		DWORD dwVersionNumber;
+		USHORT usUsagePage;
+		USHORT usUsage;
 	)"
 
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645581%28v=vs.85%29.aspx
 	static RID_DEVICE_INFO := "
 	(
-		DWORD Size;
-		DWORD Type;
+		DWORD cbSize;
+		DWORD dwType;
 		{
 			WinStructs.RID_DEVICE_INFO_MOUSE mouse;
 			WinStructs.RID_DEVICE_INFO_KEYBOARD keyboard;
@@ -110,15 +109,13 @@ Class WinStructs {
 		USHORT NumberFeatureDataIndices;
 	)"
 	
-	; UNPROVEN ==========================================================================================================================================================
-
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645565(v=vs.85).aspx
 	static RAWINPUTDEVICE := "
 	(
-		USHORT UsagePage;
-		USHORT Usage;
-		DWORD  Flags;
-		HWND   Target;
+		USHORT usUsagePage;
+		USHORT usUsage;
+		DWORD  dwFlags;
+		HWND   hwndTarget;
 	)"
 	
 	; https://msdn.microsoft.com/en-gb/library/windows/hardware/ff539693(v=vs.85).aspx
@@ -146,6 +143,7 @@ Class WinStructs {
 		USHORT Reserved4;
 	)"
 	
+	; https://msdn.microsoft.com/en-us/library/windows/hardware/ff539693(v=vs.85).aspx
 	static HIDP_BUTTON_CAPS := "
 	(
 		USHORT  UsagePage;
@@ -170,18 +168,18 @@ Class WinStructs {
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
 	static RAWMOUSE := "
 	(
-		USHORT Flags;
+		USHORT usFlags;
 		{
-			ULONG  Buttons;
+			ULONG  ulButtons;
 			{
-				USHORT ButtonFlags;
-				USHORT ButtonData;
+				USHORT usButtonFlags;
+				USHORT usButtonData;
 			};
 		};
-		ULONG  RawButtons;
-		LONG   LastX;
-		LONG   LastY;
-		ULONG  ExtraInformation;
+		ULONG  ulRawButtons;
+		LONG   lLastX;
+		LONG   lLastY;
+		ULONG  ulExtraInformation;
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645575(v=vs.85).aspx
@@ -198,17 +196,17 @@ Class WinStructs {
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645549(v=vs.85).aspx
 	static RAWHID := "
 	(
-		DWORD SizeHid;
-		DWORD Count;
-		BYTE  RawData[1];
+		DWORD dwSizeHid;
+		DWORD dwCount;
+		BYTE  bRawData[1];
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645571(v=vs.85).aspx
 	static RAWINPUTHEADER := "
 	(
-		DWORD  Type;
-		DWORD  Size;
-		HANDLE Device;
+		DWORD  dwType;
+		DWORD  dwSize;
+		HANDLE hDevice;
 		WPARAM wParam;
 	)"
 	
