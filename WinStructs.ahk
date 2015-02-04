@@ -9,7 +9,7 @@ ALWAYS Use the EXACT same name for properties. If it has a lower-case prefix, ke
 	The reasons for this are two-fold.
 	1)  The immediately obvious thing to do is to strip the lower case prefixes, however in some cases this would not be possible.
 		eg: KBDLLHOOKSTRUCT has vkCode and scanCode - you could not have two properties called "Code".
-	2)	Consistency. Seeing as we cannot achieve consistency by stripping lower case prefixes, the next best solution is to keep them exactly as in MSDN.
+	2)	Consistency. Seeing as we cannot achieve consistency by stripping lower case prefixes, the next best solution is to keep them exactly as on MSDN.
 		Some properties on MSDN have prefixes, some do not. MSDN may not be consistent, be WinStructs is (With MSDN).
 
 
