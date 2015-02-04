@@ -5,12 +5,18 @@ STYLE GUIDE
 ===========
 ALWAYS Put a link to the MSDN page for the STRUCT
 ALWAYS Use the same name as the Struct.
-ALWAYS Strip all lower case letters from the start of item names - eg "hDevice" becomes "Device"
+ALWAYS Use the EXACT same name for properties. If it has a lower-case prefix, keep it.
+	The reasons for this are two-fold.
+	1)  The immediately obvious thing to do is to strip the lower case prefixes, however in some cases this would not be possible.
+		eg: KBDLLHOOKSTRUCT has vkCode and scanCode - you could not have two properties called "Code".
+	2)	Consistency. Seeing as we cannot achieve consistency by stripping lower case prefixes, the next best solution is to keep them exactly as in MSDN.
+		Some properties on MSDN have prefixes, some do not. MSDN may not be consistent, be WinStructs is (With MSDN).
+
 
 ToDo
 ====
-* Revert back to names as they appear in MSDN.
-  Some names cannot have the lowercase characters removed, eg KBDLLHOOKSTRUCT has vkCode and scanCode, both are DWORDs
+* Some way of bundling defines with struct definition?
+
 */
 
 Class WinStructs {
