@@ -7,13 +7,20 @@ ALWAYS Put a link to the MSDN page for the STRUCT
 ALWAYS Use the same name as the Struct.
 ALWAYS Strip all lower case letters from the start of item names - eg "hDevice" becomes "Device"
 
+ToDo
+====
+* Revert back to names as they appear in MSDN.
+  Some names cannot have the lowercase characters removed, eg KBDLLHOOKSTRUCT has vkCode and scanCode, both are DWORDs
 */
 
 Class WinStructs {
 	; Define locations - used to check validity of Structures by looking up the actual size from the specified windows header file.
 	; Set to 1 for default header file of "Windows.h"
 	; Set to -1 to not check (un-named sub-structs etc)
-	static Defines := { RAWINPUTDEVICELIST: 1
+	static Defines := { KBDLLHOOKSTRUCT: 1
+		, POINT: 1
+		, MSLLHOOKSTRUCT: 1
+		, RAWINPUTDEVICELIST: 1
 		, RID_DEVICE_INFO_MOUSE: 1
 		, RID_DEVICE_INFO_KEYBOARD: 1
 		, RID_DEVICE_INFO_HID: 1
@@ -217,4 +224,30 @@ Class WinStructs {
 		}
 	)"
 
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms644967(v=vs.85).aspx
+	static KBDLLHOOKSTRUCT := "
+	(
+		DWORD     vkCode;
+		DWORD     scanCode;
+		DWORD     flags;
+		DWORD     time;
+		ULONG_PTR dwExtraInfo;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
+	static POINT := "
+	(
+		LONG x;
+		LONG y;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms644970(v=vs.85).aspx
+	static MSLLHOOKSTRUCT := "
+	(
+		WinStructs.POINT     pt;
+		DWORD     mouseData;
+		DWORD     flags;
+		DWORD     time;
+		ULONG_PTR dwExtraInfo;
+	)"
 }
