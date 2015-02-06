@@ -36,6 +36,9 @@ Class WinStructs {
 		, HIDP_BUTTON_CAPS_Range: -1
 		, HIDP_BUTTON_CAPS_NotRange: -1
 		, HIDP_BUTTON_CAPS: ["Hidusage.h", "Hidpi.h"]
+		, HIDP_VALUE_CAPS_Range: -1
+		, HIDP_VALUE_CAPS_NotRange: -1
+		, HIDP_VALUE_CAPS: ["Hidusage.h", "Hidpi.h"]
 		, RAWMOUSE: 1
 		, RAWKEYBOARD: 1
 		, RAWHID: 1
@@ -149,7 +152,6 @@ Class WinStructs {
 		USHORT Reserved4;
 	)"
 	
-	; https://msdn.microsoft.com/en-us/library/windows/hardware/ff539693(v=vs.85).aspx
 	static HIDP_BUTTON_CAPS := "
 	(
 		USHORT  UsagePage;
@@ -170,6 +172,60 @@ Class WinStructs {
 		};
 	)"
 	
+	; https://msdn.microsoft.com/en-us/library/windows/hardware/ff539832(v=vs.85).aspx
+	static HIDP_VALUE_CAPS_Range := "
+	(
+		USAGE  UsageMin;
+		USAGE  UsageMax;
+		USHORT StringMin;
+		USHORT StringMax;
+		USHORT DesignatorMin;
+		USHORT DesignatorMax;
+		USHORT DataIndexMin;
+		USHORT DataIndexMax;
+	)"
+
+	static HIDP_VALUE_CAPS_NotRange := "
+	(
+		USAGE  Usage;
+		USAGE  Reserved1;
+		USHORT StringIndex;
+		USHORT Reserved2;
+		USHORT DesignatorIndex;
+		USHORT Reserved3;
+		USHORT DataIndex;
+		USHORT Reserved4;
+	)"
+
+	static HIDP_VALUE_CAPS := "
+	(
+		USAGE   UsagePage;
+		UCHAR   ReportID;
+		BOOLEAN IsAlias;
+		USHORT  BitField;
+		USHORT  LinkCollection;
+		USAGE   LinkUsage;
+		USAGE   LinkUsagePage;
+		BOOLEAN IsRange;
+		BOOLEAN IsStringRange;
+		BOOLEAN IsDesignatorRange;
+		BOOLEAN IsAbsolute;
+		BOOLEAN HasNull;
+		UCHAR   Reserved;
+		USHORT  BitSize;
+		USHORT  ReportCount;
+		USHORT  Reserved2[5];
+		ULONG   UnitsExp;
+		ULONG   Units;
+		LONG    LogicalMin;
+		LONG    LogicalMax;
+		LONG    PhysicalMin;
+		LONG    PhysicalMax;
+		{
+			WinStructs.HIDP_VALUE_CAPS_Range Range;
+			WinStructs.HIDP_VALUE_CAPS_NotRange NotRange;
+		};
+	)"
 
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645578(v=vs.85).aspx
 	static RAWMOUSE := "
