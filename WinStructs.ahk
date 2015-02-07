@@ -309,4 +309,25 @@ Class WinStructs {
 		DWORD     time;
 		ULONG_PTR dwExtraInfo;
 	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/dd162897(v=vs.85).aspx
+	static RECT := "
+	(
+		LONG left;
+		LONG top;
+		LONG right;
+		LONG bottom;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/bb787537(v=vs.85).aspx
+	static SCROLLINFO := "
+	(
+		UINT cbSize;
+		UINT fMask;
+		int  nMin;
+		int  nMax;
+		UINT nPage;
+		int  nPos;
+		int  nTrackPos;
+	)"
 }
