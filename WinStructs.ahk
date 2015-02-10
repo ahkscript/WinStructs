@@ -281,6 +281,7 @@ Class WinStructs {
 			WinStructs.RAWKEYBOARD keyboard;
 			WinStructs.RAWHID      hid;
 		}
+		BYTE buffer[49]; // buffer as the structure might differe for devices. ToDo: check on x64
 	)"
 
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms644967(v=vs.85).aspx
