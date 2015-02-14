@@ -294,21 +294,27 @@ Class WinStructs {
 		ULONG_PTR dwExtraInfo;
 	)"
 	
+	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms644970(v=vs.85).aspx
+	static MSLLHOOKSTRUCT := "
+	(
+		WinStructs.POINT     pt;
+		{
+		DWORD     mouseData;
+			struct {
+				WORD mouseData_low;
+				WORD mouseData_high;
+			};
+		};
+		DWORD     flags;
+		DWORD     time;
+		ULONG_PTR dwExtraInfo;
+	)"
+	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
 	static POINT := "
 	(
 		LONG x;
 		LONG y;
-	)"
-	
-	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms644970(v=vs.85).aspx
-	static MSLLHOOKSTRUCT := "
-	(
-		WinStructs.POINT     pt;
-		DWORD     mouseData;
-		DWORD     flags;
-		DWORD     time;
-		ULONG_PTR dwExtraInfo;
 	)"
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/dd162897(v=vs.85).aspx
