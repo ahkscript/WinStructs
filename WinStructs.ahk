@@ -43,7 +43,8 @@ Class WinStructs {
 		, RAWKEYBOARD: 1
 		, RAWHID: 1
 		, RAWINPUTHEADER: 1
-		, RAWINPUT: 1 }
+		, RAWINPUT: 1
+		, STARTUPINFO: 1 }
 	
 	; https://msdn.microsoft.com/en-us/library/windows/desktop/ms645568%28v=vs.85%29.aspx
 	static RAWINPUTDEVICELIST := "
@@ -336,5 +337,28 @@ Class WinStructs {
 		UINT nPage;
 		int  nPos;
 		int  nTrackPos;
+	)"
+	
+	; https://msdn.microsoft.com/en-us/library/ms686331(v=vs.85).aspx
+	static STARTUPINFO := "
+	(
+		DWORD cb;
+		LPSTR lpReserved;
+		LPTSTR lpDesktop;
+	 	LPTSTR lpTitle;
+		DWORD  dwX;
+		DWORD  dwY;
+		DWORD  dwXSize;
+		DWORD  dwYSize;
+		DWORD  dwXCountChars;
+		DWORD  dwYCountChars;
+		DWORD  dwFillAttribute;
+		DWORD  dwFlags;
+		WORD   wShowWindow;
+		WORD   cbReserved2;
+		LPBYTE lpReserved2;
+		HANDLE hStdInput;
+		HANDLE hStdOutput;
+		HANDLE hStdError;
 	)"
 }
